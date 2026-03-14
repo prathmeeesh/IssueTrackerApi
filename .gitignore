@@ -1,17 +1,15 @@
 # Visual Studio
 .vs/
+
+# Build folders
 bin/
 obj/
 
-# User-specific files
+# User specific files
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
-
-# Build results
-Debug/
-Release/
 
 # OS files
 .DS_Store
