@@ -1,4 +1,5 @@
 ﻿using IssueTrackerApi.Data;
+using IssueTrackerApi.DTOs;
 using IssueTrackerApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,9 +20,14 @@ namespace IssueTrackerApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<IActionResult> CreateProject(Project project)
+        public async Task<IActionResult> CreateProject(CreateProjectDto dto)
         {
-            project.CreatedDate = DateTime.UtcNow;
+            var project = new Project
+            {
+                Name = dto.Name,
+                Description = dto.Description,
+                CreatedDate = DateTime.UtcNow
+            };
 
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();

@@ -4,6 +4,25 @@
 # Build folders
 bin/
 obj/
+TestResults/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+appsettings.*.Local.json
+secrets.json
+*.pfx
+*.p12
+*.pem
+*.key
+
+# Database files and local logs
+*.mdf
+*.ldf
+*.bak
+*.log
 
 # User specific files
 *.user

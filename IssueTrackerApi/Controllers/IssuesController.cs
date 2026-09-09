@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Globalization;
 
 namespace IssueTrackerApi.Controllers
 {
@@ -84,6 +85,12 @@ namespace IssueTrackerApi.Controllers
         [HttpPut("{id}/status")]
         public async Task<IActionResult> ChangeStatus(int id, string newStatus)
         {
+            if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier),
+                NumberStyles.None, CultureInfo.InvariantCulture, out var userId) || userId <= 0)
+            {
+                return Unauthorized();
+            }
+
             var issue = await _context.Issues.FindAsync(id);
             if (issue == null) return NotFound();
 
@@ -95,7 +102,8 @@ namespace IssueTrackerApi.Controllers
                 { "Closed", new string[] { } }
             };
 
-            if (!validTransitions[issue.Status].Contains(newStatus))
+            if (!validTransitions.TryGetValue(issue.Status, out var allowedStatuses)
+                || !allowedStatuses.Contains(newStatus))
                 return BadRequest("Invalid status transition");
 
             var history = new IssueHistory
@@ -103,7 +111,7 @@ namespace IssueTrackerApi.Controllers
                 IssueId = issue.Id,
                 OldStatus = issue.Status,
                 NewStatus = newStatus,
-                ChangedByUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "0")
+                ChangedByUserId = userId
             };
 
             issue.Status = newStatus;

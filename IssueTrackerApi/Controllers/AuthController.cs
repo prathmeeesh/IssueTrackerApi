@@ -3,7 +3,6 @@ using IssueTrackerApi.Data;
 using IssueTrackerApi.DTOs;
 using IssueTrackerApi.Models;
 using IssueTrackerApi.Services;
-using BCrypt.Net;
 using Microsoft.EntityFrameworkCore;
 
 namespace IssueTrackerApi.Controllers
@@ -31,7 +30,7 @@ namespace IssueTrackerApi.Controllers
             {
                 Email = dto.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
-                Role = dto.Role
+                Role = "Developer"
             };
 
             _context.Users.Add(user);
@@ -50,7 +49,7 @@ namespace IssueTrackerApi.Controllers
                 !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
                 return Unauthorized("Invalid credentials");
 
-            var token = _tokenService.CreateToken(user.Email, user.Role);
+            var token = _tokenService.CreateToken(user.Id, user.Email, user.Role);
 
             return Ok(token);
         }
