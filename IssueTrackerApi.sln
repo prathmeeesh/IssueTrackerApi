@@ -5,12 +5,18 @@ VisualStudioVersion = 17.14.36930.0 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IssueTrackerApi", "IssueTrackerApi\IssueTrackerApi.csproj", "{4BA08AD9-BADF-4D69-A082-F6F15ACE0440}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IssueTrackerApi.Tests", "IssueTrackerApi.Tests\IssueTrackerApi.Tests.csproj", "{DD34277D-FC40-4C41-9707-410677313FF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD34277D-FC40-4C41-9707-410677313FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD34277D-FC40-4C41-9707-410677313FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD34277D-FC40-4C41-9707-410677313FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD34277D-FC40-4C41-9707-410677313FF9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4BA08AD9-BADF-4D69-A082-F6F15ACE0440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4BA08AD9-BADF-4D69-A082-F6F15ACE0440}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BA08AD9-BADF-4D69-A082-F6F15ACE0440}.Release|Any CPU.ActiveCfg = Release|Any CPU
