@@ -1,5 +1,7 @@
 # Issue Tracker API
 
+[![.NET CI](https://github.com/prathmeeesh/IssueTrackerApi/actions/workflows/ci.yml/badge.svg)](https://github.com/prathmeeesh/IssueTrackerApi/actions/workflows/ci.yml)
+
 A C# / ASP.NET Core 8 REST API for tracking project issues, with JWT authentication, role-restricted project creation, comments, and audited status transitions.
 
 ## Overview
@@ -131,7 +133,7 @@ Latest local verification, 9 September 2026: `dotnet restore`, `dotnet build -c 
 
 The run includes 3 token-service unit cases and 52 integration cases. Parameterised theory rows count as individual cases. Coverage includes valid and invalid workflows, persisted history actors, registration/login, password hashing, role restrictions, JWT rejection, server-controlled fields, project/comment DTO binding, and startup configuration validation.
 
-Integration tests use the real ASP.NET request pipeline and disposable SQLite databases with generated test keys. They require no SQL Server credentials or running API. They do not prove SQL Server migration correctness, production connectivity, or SQL Server-specific behaviour. These are local results, not a CI badge or a coverage percentage.
+Integration tests use the real ASP.NET request pipeline and disposable SQLite databases with generated test keys. They require no SQL Server credentials or running API. They do not prove SQL Server migration correctness, production connectivity, or SQL Server-specific behaviour. These are local results, not a coverage percentage.
 
 See the [testing guide](IssueTrackerApi/docs/testing.md) for test categories, report commands, and remaining gaps.
 
@@ -147,7 +149,7 @@ dotnet test IssueTrackerApi.sln --configuration Release --no-build
 
 CI uses the same disposable SQLite databases and generated test keys as local tests. No SQL Server service, application credentials, or custom GitHub secrets are required. The workflow grants read-only repository access, disables persisted checkout credentials, and pins actions to verified release commits.
 
-Local verification is not proof of a successful hosted CI run. Check GitHub Actions for the current hosted status. SQL Server migrations, deployment, and production configuration are outside the workflow's current scope. No build-passing badge is claimed.
+Hosted CI is enabled through GitHub Actions; the badge at the top of this README reflects the current status of the main workflow. SQL Server migrations, deployment, and production configuration are outside the workflow's current scope.
 
 ## Getting Started
 
